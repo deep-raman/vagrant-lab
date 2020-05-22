@@ -23,12 +23,16 @@ Vagrant.configure(2) do |config|
     config.vm.hostname = "centos1"
     config.vm.provision "shell", inline: $sshinit
   end
-
+  
+  config.vm.define "centos2" do |config|
+    config.vm.box = "centos/8"
+    config.vm.provision "shell", inline: $sshinit
+  end
+  
   config.vm.define "ubuntu1" do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.hostname = "ubuntu1"
     config.vm.provision "shell", inline: $sshinit
   end
-
 
 end
