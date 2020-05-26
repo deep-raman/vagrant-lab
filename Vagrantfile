@@ -10,12 +10,14 @@ Vagrant.configure(2) do |config|
     config.vm.box = "debian/stretch64"
     config.vm.hostname = "debian1"
     config.vm.provision "shell", inline: $sshinit
+    config.vm.network "forwarded_port", guest: 80, host: 8080
   end
 
   config.vm.define "debian2" do |config|
     config.vm.box = "debian/stretch64"
     config.vm.hostname = "debian2"
     config.vm.provision "shell", inline: $sshinit
+    config.vm.network "forwarded_port", guest: 80, host: 8081
   end
 
   config.vm.define "centos1" do |config|
@@ -25,7 +27,7 @@ Vagrant.configure(2) do |config|
   end
   
   config.vm.define "centos2" do |config|
-    config.vm.box = "centos/8"
+    config.vm.box = "centos/7"
     config.vm.provision "shell", inline: $sshinit
   end
   
@@ -33,6 +35,7 @@ Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.hostname = "ubuntu1"
     config.vm.provision "shell", inline: $sshinit
+    config.vm.network "forwarded_port", guest: 80, host: 8082
   end
 
 end
